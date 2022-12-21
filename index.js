@@ -1,48 +1,59 @@
-let years = +prompt('Введіть рік народження');
-let city = prompt('Введіть місто в якому ви живите');
-let sport = prompt( 'Введіть свій улюблений вид спорту')
+const years = prompt('Введіть рік народження');
+const city = prompt('Введіть місто в якому ви живите');
+const sport = prompt( 'Введіть свій улюблений вид спорту')
 
-let userYears = ''
-let userCity = ''
-let userSport = ''
+let userYears ;
+let userCity;
+let userSport;
 
-if(!!years){
-    userYears = `${years}`
-}else if(isNaN(years)){
-    userYears = 'Треба ввести число'
-} else {
-    userYears = `Шкода, що Ви не захотіли ввести свою дату народження`
+switch (true) {
+    case (years === null):
+        userYears = "Шкода, що Ви не захотіли ввести свою дату народження"
+        break
+    case (isNaN(+years)):
+        userYears = 'Треба ввести число'
+        break
+    case (!(Number(years)>1960 && Number(years)<2015)):
+        userYears = 'спробуйте інший рік'
+        break
+    default:
+        userYears = years
 }
-
-    switch (city) {
-        case 'Київ':
+    switch (true) {
+    case (city === null):
+        userCity = 'Шкода, що Ви не захотіли ввести свое місто'
+        break;
+        case (city.toLowerCase()==='київ'):
             userCity = "Ти живеш у столиці України"
             break;
-        case 'Вашингтон':
+        case (city.toLowerCase()==='вашингтон'):
             userCity = 'Ти живеш у столиці Америки'
             break;
-        case 'Лондон':
+        case (city.toLowerCase()==='лондон'):
             userCity = 'Ти живеш у столиці Англії'
             break;
-        case null:
-            userCity = 'Шкода, що Ви не захотіли ввести свое місто'
+        case (city.trim()===''):
+                userCity ='Ви не ввели символів'
             break;
         default:
             userCity = `Ти живеш у місті ${city}`
     }
 
-    switch (sport) {
-        case 'футбол':
+    switch (true) {
+        case (null===sport) :
+            userSport = 'Шкода, що Ви не захотіли ввести свій спорт'
+            break;
+        case (sport.toLowerCase()==='футбол'):
             userSport = "Круто! Хочеш стати як Lionel Messi ?"
             break;
-        case 'баскетбол':
+        case (sport.toLowerCase()==='баскетбол'):
             userSport = 'Круто! Хочеш стати як Michael Jordan?'
             break;
-        case 'біг':
+        case (sport.toLowerCase()==='біг'):
             userSport = 'Круто! Хочеш стати як Usain Bolt?'
             break;
-        case null :
-            userSport = 'Шкода, що Ви не захотіли ввести свій спорт'
+        case (sport.trim() === ''):
+                userSport = 'Ви не ввели символів'
             break;
         default:
             userSport = `Твій спорт ${sport}`
